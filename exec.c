@@ -73,6 +73,26 @@ instruction_t _instruction(char *line, unsigned int line_number)
 		instrct.f = _add;
 		_add(&stack_top1, line_number);
 	}
+	else if (strcmp(instrct.opcode, "sub") == 0)
+	{
+		instrct.f = _sub;
+		_sub(&stack_top1, line_number);
+	}
+	else if (strcmp(instrct.opcode, "div") == 0)
+	{
+		instrct.f = _div;
+		_div(&stack_top1, line_number);
+	}
+	else if (strcmp(instrct.opcode, "mul") == 0)
+	{
+		instrct.f = _mul;
+		_mul(&stack_top1, line_number);
+	}
+	else if (strcmp(instrct.opcode, "mod") == 0)
+	{
+		instrct.f = _mod;
+		_mod(&stack_top1, line_number);
+	}
 	else if (strcmp(instrct.opcode, "nop") == 0)
 	{
 		instrct.f = nope;

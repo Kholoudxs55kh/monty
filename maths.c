@@ -7,16 +7,16 @@
  */
 void _add(stack_t **stack, unsigned int line_number)
 {
-	int sum;
+        int sum;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	sum = (*stack)->n + (*stack)->next->n;
-	_pop(stack, line_number);
-	(*stack)->n = sum;
+        if (*stack == NULL || (*stack)->next == NULL)
+        {
+                fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+                exit(EXIT_FAILURE);
+        }
+        sum = (*stack)->n + (*stack)->next->n;
+        _pop(stack, line_number);
+        (*stack)->n = sum;
 }
 
 /**
@@ -27,16 +27,16 @@ void _add(stack_t **stack, unsigned int line_number)
  */
 void _sub(stack_t **stack, unsigned int line_number)
 {
-	int sum = 0;
+        int sum = 0;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	sum = (*stack)->n - (*stack)->next->n;
-	_pop(stack, line_number);
-	(*stack)->n = sum;
+        if (*stack == NULL || (*stack)->next == NULL)
+        {
+                fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+                exit(EXIT_FAILURE);
+        }
+        sum = -((*stack)->n) + (*stack)->next->n;
+        _pop(stack, line_number);
+        (*stack)->n = sum;
 }
 
 /**
@@ -47,16 +47,16 @@ void _sub(stack_t **stack, unsigned int line_number)
  */
 void _div(stack_t **stack, unsigned int line_number)
 {
-	int sum;
+        int sum;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	sum = (*stack)->n / (*stack)->next->n;
-	_pop(stack, line_number);
-	(*stack)->n = sum;
+        if (*stack == NULL || (*stack)->next == NULL)
+        {
+                fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
+                exit(EXIT_FAILURE);
+        }
+        sum = (*stack)->next->n / (*stack)->n;
+        _pop(stack, line_number);
+        (*stack)->n = sum;
 }
 
 /**
@@ -67,16 +67,16 @@ void _div(stack_t **stack, unsigned int line_number)
  */
 void _mul(stack_t **stack, unsigned int line_number)
 {
-	int sum;
+        int sum;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	sum = (*stack)->n * (*stack)->next->n;
-	_pop(stack, line_number);
-	(*stack)->n = sum;
+        if (*stack == NULL || (*stack)->next == NULL)
+        {
+                fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
+                exit(EXIT_FAILURE);
+        }
+        sum = (*stack)->n * (*stack)->next->n;
+        _pop(stack, line_number);
+        (*stack)->n = sum;
 }
 
 /**
@@ -87,14 +87,14 @@ void _mul(stack_t **stack, unsigned int line_number)
  */
 void _mod(stack_t **stack, unsigned int line_number)
 {
-	int sum;
+        int sum;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	sum = (*stack)->n % (*stack)->next->n;
-	_pop(stack, line_number);
-	(*stack)->n = sum;
+        if (*stack == NULL || (*stack)->next == NULL)
+        {
+                fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+                exit(EXIT_FAILURE);
+        }
+        sum = (*stack)->next->n % (*stack)->n;
+        _pop(stack, line_number);
+        (*stack)->n = sum;
 }
