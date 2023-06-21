@@ -18,10 +18,7 @@ instruction_t _instruction(char *line, unsigned int line_number)
 
 	token = strtok(line, " \t\n");
 	if (token == NULL)
-	{
-		fprintf(stderr, "L%u: empty instruction\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		return (instrct);
 	instrct.opcode = strdup(token);
 	if (strcmp(instrct.opcode, "push") == 0)
 	{
@@ -46,6 +43,11 @@ instruction_t _instruction(char *line, unsigned int line_number)
 	{
 		instrct.f = _push;
 		n = atoi(arg);
+		if(!n)
+		{
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 		_push(&stack_top1, n);
 	}
 	else if (strcmp(instrct.opcode, "pall") == 0)

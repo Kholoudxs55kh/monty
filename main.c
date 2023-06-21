@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	FILE *fd;
 	char *line = NULL;
 	size_t len = 0;
-	unsigned int line_num = 1;
+	unsigned int line_num = 0;
 
 
 	if (argc != 2)
