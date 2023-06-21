@@ -7,7 +7,7 @@
  */
 void _add(stack_t **stack, unsigned int line_number)
 {
-	int sum = 0;
+	int sum;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{

@@ -71,12 +71,12 @@ instruction_t _instruction(char *line, unsigned int line_number)
 	else if (strcmp(instrct.opcode, "add") == 0)
 	{
 		instrct.f = _add;
-		_pall(&stack_top1, line_number);
+		_add(&stack_top1, line_number);
 	}
 	else if (strcmp(instrct.opcode, "nop") == 0)
 	{
 		instrct.f = nope;
-		_pall(&stack_top1, line_number);
+		nope(&stack_top1, line_number);
 	}
 	else
 	{
