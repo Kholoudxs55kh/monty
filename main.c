@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 stack_t *stack_top1 = NULL;
 
 /**
