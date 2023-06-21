@@ -4,8 +4,8 @@
 #define  _GNU_SOURCE
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 
 /**
@@ -24,6 +24,7 @@ typedef struct stack_s
         struct stack_s *next;
 } stack_t;
 
+extern stack_t *stack_top1;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -37,6 +38,20 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, __attribute__((unused)) unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+void nope(stack_t **stack, unsigned int line_number);
+void _add(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
+void _sub(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
+void _mod(stack_t **stack, unsigned int line_number);
+instruction_t _instruction(char *line, unsigned int line_number);
+
 
 
 #endif
