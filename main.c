@@ -46,6 +46,8 @@ int main(int argc, char *argv[])
 	}
 
 	free(line);
+	free(fd);
 	fclose(fd);
 	return (0);
 }
+

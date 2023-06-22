@@ -105,5 +105,6 @@ instruction_t _instruction(char *line, unsigned int line_number)
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, instrct.opcode);
 		exit(EXIT_FAILURE);
 	}
+	free(instrct.opcode);
 	return (instrct);
 }
