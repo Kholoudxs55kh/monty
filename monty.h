@@ -53,7 +53,9 @@ void _div(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 instruction_t _instruction(char *line, unsigned int line_number, FILE *fd);
 void free_dlistint(stack_t *head);
+void func_2(instruction_t *instrct, char *arg, FILE *fd, char *token, char *line, unsigned int line_number);
+void free_ex(char *arg, char *token,instruction_t *instrct, char *line, FILE *fd);
+void func_(instruction_t *instrct, char *arg, FILE *fd, char *token, char *line, unsigned int line_number);
 
 
 #endif
-

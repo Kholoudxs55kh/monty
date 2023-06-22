@@ -1,4 +1,5 @@
 #include "monty.h"
+stack_t *stack_top1 = NULL;
 
 /**
  * _instruction - .
@@ -9,8 +10,8 @@
  */
 instruction_t _instruction(char *line, unsigned int line_number, FILE *fd)
 {
-	char *token;
-	char *arg;
+	char *token = NULL;
+	char *arg = NULL;
 	bool valid_arg;
 	int n;
 	instruction_t instrct;
@@ -27,13 +28,7 @@ instruction_t _instruction(char *line, unsigned int line_number, FILE *fd)
 		if (arg == NULL)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
-			free_dlistint(stack_top1);
-			free(fd);
 			fclose(fd);
-			free(instrct.opcode);
-			free(token);
-			free(arg);
-			free(line);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -43,13 +38,7 @@ instruction_t _instruction(char *line, unsigned int line_number, FILE *fd)
 		token = strtok(NULL, " \t\n");
 		if (token != NULL)
 		{
-			free_dlistint(stack_top1);
-			free(instrct.opcode);
-			free(token);
-			free(arg);
-			free(fd);
 			fclose(fd);
-			free(line);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -61,13 +50,7 @@ instruction_t _instruction(char *line, unsigned int line_number, FILE *fd)
 		if (!valid_arg)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
-			free(fd);
 			fclose(fd);
-			free(arg);
-			free_dlistint(stack_top1);
-			free(instrct.opcode);
-			free(token);
-			free(line);
 			exit(EXIT_FAILURE);
 		}
 		_push(&stack_top1, n);
@@ -125,12 +108,7 @@ instruction_t _instruction(char *line, unsigned int line_number, FILE *fd)
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, instrct.opcode);
-		free(instrct.opcode);
-		free(token);
-		free(fd);
 		fclose(fd);
-		free(arg);
-		free(line);
 		exit(EXIT_FAILURE);
 	}
 	free(instrct.opcode);

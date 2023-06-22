@@ -1,6 +1,5 @@
 #include "monty.h"
 
-stack_t *stack_top1 = NULL;
 
 /**
  * free_dlistint - .
@@ -44,7 +43,6 @@ int main(int argc, char *argv[])
 	size_t len = 0;
 	unsigned int line_num = 0;
 
-
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -55,7 +53,6 @@ int main(int argc, char *argv[])
 	if (fd == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		free(fd);
 		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
@@ -66,7 +63,6 @@ int main(int argc, char *argv[])
 	}
 
 	free(line);
-	free(fd);
 	fclose(fd);
 	return (0);
 }
