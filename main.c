@@ -62,6 +62,7 @@ int main(int argc, char *argv[])
 	while (getline(&line, &len, fd) != -1)
 	{
 		line_num++;
+		f_close.line = line;
 		_instruction(line, line_num, fd);
 	}
 

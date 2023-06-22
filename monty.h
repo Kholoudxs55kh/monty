@@ -45,12 +45,14 @@ typedef struct instruction_s
 /**
  * struct fileclose - .
  * @file: .
+ * @line: .
  *
  * Description: to help close the file
  */
 typedef struct fileclose
 {
 	FILE *file;
+	char *line;
 } file_close;
 extern file_close f_close;
 

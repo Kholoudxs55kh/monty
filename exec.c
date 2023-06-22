@@ -10,7 +10,6 @@ stack_t *stack_top1 = NULL;
  */
 instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 {
-	char *token = NULL;
 	char *arg = NULL;
 	bool valid_arg;
 	int n = 0, i;
@@ -19,10 +18,9 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 
 	instrct.opcode = NULL;
 	instrct.f = NULL;
-	token = strtok(line_c, " \t\n");
-	if (token == NULL)
+	instrct.opcode = strtok(line_c, " \t\n");
+	if (instrct.opcode == NULL)
 		return (instrct);
-	instrct.opcode = strdup(token);
 	if (strcmp(instrct.opcode, "push") != 0)
 	{
 		if (strcmp(instrct.opcode, "pall") == 0)
@@ -157,7 +155,6 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 	instrct.f = _push;
 	_push(&stack_top1, n);
 
-	free(instrct.opcode);
 	return (instrct);
 }
 

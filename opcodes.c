@@ -1,6 +1,4 @@
-
 #include "monty.h"
-
 
 /**
  * _push - .
@@ -60,6 +58,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		free_dlistint(*stack);
+		free(f_close.line);
 		fclose(f_close.file);
 		exit(EXIT_FAILURE);
 	}
@@ -78,7 +77,6 @@ void _pop(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		free_dlistint(*stack);
 		free_dlistint(temp);
 		fclose(f_close.file);
 		exit(EXIT_FAILURE);
