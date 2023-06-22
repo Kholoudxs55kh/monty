@@ -1,5 +1,5 @@
 #include "monty.h"
-
+file_close f_close = {NULL};
 
 /**
  * free_dlistint - .
@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 	}
 
 	fd = fopen(argv[1], "r");
+	f_close.file = fd;
 	if (fd == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);

@@ -16,7 +16,9 @@ void _push(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free_dlistint(*stack);
-		free(new_node);
+		free_dlistint(new_node);
+		free(stack_top1);
+		fclose(f_close.file);
 		exit(EXIT_FAILURE);
 	}
 
@@ -58,6 +60,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		free_dlistint(*stack);
+		fclose(f_close.file);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
@@ -77,6 +80,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		free_dlistint(*stack);
 		free_dlistint(temp);
+		fclose(f_close.file);
 		exit(EXIT_FAILURE);
 	}
 	*stack = (*stack)->next;
@@ -102,6 +106,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 		free_dlistint(*stack);
 		free_dlistint(first);
 		free_dlistint(sec);
+		fclose(f_close.file);
 		exit(EXIT_FAILURE);
 	}
 	first->next = sec->next;

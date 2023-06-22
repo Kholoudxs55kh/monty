@@ -3,8 +3,10 @@
 
 #define  _GNU_SOURCE
 #include <stdio.h>
+#include <limits.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -40,6 +42,18 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct fileclose - .
+ * @file: .
+ *
+ * Description: to help close the file
+ */
+typedef struct fileclose
+{
+	FILE *file;
+} file_close;
+extern file_close f_close;
+
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
@@ -51,7 +65,7 @@ void _sub(stack_t **stack, unsigned int line_number);
 void _mul(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
-instruction_t _instruction(char *line, unsigned int line_number, FILE *fd);
+instruction_t _instruction(char *line, unsigned int line_num, FILE *fd);
 void free_dlistint(stack_t *head);
 void func_2(instruction_t *instrct, char *arg, FILE *fd, char *token, char *line, unsigned int line_number);
 void free_ex(char *arg, char *token,instruction_t *instrct, char *line, FILE *fd);
