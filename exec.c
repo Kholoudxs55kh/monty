@@ -35,7 +35,6 @@ else
 	token = strtok(NULL, " \t\n");
 	if (token != NULL)
 	{
-		fprintf(stderr, "L%u: instruction %s does not take arguments\n", line_number, instrct.opcode);
 		exit(EXIT_FAILURE);
 	}
 }
