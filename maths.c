@@ -90,7 +90,7 @@ void _mul(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
 		free(f_close.line);
 		fclose(f_close.file);
-		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	sum = (*stack)->n * (*stack)->next->n;

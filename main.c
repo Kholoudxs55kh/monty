@@ -84,6 +84,7 @@ int main(int argc, char *argv[])
 		}
 		free(f_close.line);
 		fclose(fd);
+		free_st(f_close.stack);
 	}
 	free_st(f_close.stack);
 	return (0);
