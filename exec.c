@@ -80,7 +80,6 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 		{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_num, instrct.opcode);
 		free(instrct.opcode);
-		free(token);
 		free(line);
 		fclose(fd);
 		exit(EXIT_FAILURE);
