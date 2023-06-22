@@ -76,6 +76,7 @@ void free_ex(char *arg, char *token,instruction_t *instrct, char *line, FILE *fd
 void func_(instruction_t *instrct, char *arg, FILE *fd, char *token, char *line, unsigned int line_number);
 void free_stack(stack_t **head);
 void free_st(stack_t **head);
+void _pchar(stack_t **stack, unsigned int line_number);
 
-
+void _pstr(stack_t **stack, __attribute__((unused)) unsigned int line_number);
 #endif

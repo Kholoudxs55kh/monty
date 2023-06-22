@@ -75,13 +75,22 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 			instrct.f = nope;
 			nope(&stack_top1, line_num);
 		}
-
+		else if (strcmp(instrct.opcode, "pchar") == 0)
+		{
+			instrct.f = _pchar;
+			_pchar(&stack_top1, line_num);
+		}
+		else if (strcmp(instrct.opcode, "pstr") == 0)
+		{
+			instrct.f = _pstr;
+			_pstr(&stack_top1, line_num);
+		}
 		else
 		{
-		fprintf(stderr, "L%u: unknown instruction %s\n", line_num, instrct.opcode);
-		free(instrct.opcode);
-		fclose(fd);
-		exit(EXIT_FAILURE);
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_num, instrct.opcode);
+			free(instrct.opcode);
+			fclose(fd);
+			exit(EXIT_FAILURE);
 		}
 
 		return (instrct);

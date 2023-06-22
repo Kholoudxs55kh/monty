@@ -7,6 +7,8 @@ pall
 #kh
 push 10
 pint
+push 74
+pchar 77
 
 push 11
 push 22

@@ -89,4 +89,3 @@ int main(int argc, char *argv[])
 	free_st(f_close.stack);
 	return (0);
 }
-
