@@ -1,3 +1,4 @@
+
 #include "monty.h"
 
 
@@ -14,6 +15,8 @@ void _push(stack_t **stack, unsigned int line_number)
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free_dlistint(*stack);
+		free(new_node);
 		exit(EXIT_FAILURE);
 	}
 
@@ -54,6 +57,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
@@ -71,6 +75,8 @@ void _pop(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		free_dlistint(*stack);
+		free_dlistint(temp);
 		exit(EXIT_FAILURE);
 	}
 	*stack = (*stack)->next;
@@ -93,6 +99,9 @@ void _swap(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		free_dlistint(*stack);
+		free_dlistint(first);
+		free_dlistint(sec);
 		exit(EXIT_FAILURE);
 	}
 	first->next = sec->next;

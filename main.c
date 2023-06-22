@@ -55,6 +55,8 @@ int main(int argc, char *argv[])
 	if (fd == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		free(fd);
+		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
 	while (getline(&line, &len, fd) != -1)
