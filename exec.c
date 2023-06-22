@@ -19,6 +19,8 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 	instrct.opcode = NULL;
 	instrct.f = NULL;
 	instrct.opcode = strtok(line_c, " \t\n");
+	if (instrct.opcode && instrct.opcode[0] == '#')
+		return (instrct);
 	if (instrct.opcode == NULL)
 		return (instrct);
 	if (strcmp(instrct.opcode, "push") != 0)
