@@ -1,8 +1,9 @@
 #include "monty.h"
+
 stack_t *stack_top1 = NULL;
 
 /**
- * _nope - .
+ * nope - .
  * @stack: .
  * @line_number: .
  * Return: .

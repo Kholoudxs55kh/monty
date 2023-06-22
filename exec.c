@@ -13,9 +13,9 @@ instruction_t _instruction(char *line, unsigned int line_number)
 	char *arg;
 	int n;
 	instruction_t instrct;
+
 	instrct.opcode = NULL;
 	instrct.f = NULL;
-
 	token = strtok(line, " \t\n");
 	if (token == NULL)
 		return (instrct);
@@ -42,7 +42,7 @@ if (strcmp(instrct.opcode, "push") == 0)
 {
 	instrct.f = _push;
 	n = atoi(arg);
-	if(!n)
+	if (!n)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
