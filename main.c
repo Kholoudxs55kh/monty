@@ -17,6 +17,29 @@ void free_dlistint(stack_t *head)
 		nodeToFree = head;
 	}
 }
+void free_st(stack_t **head)
+{
+        stack_t *nodeToFree = *head;
+
+        while (nodeToFree)
+        {
+                *head = nodeToFree->next;
+                free(nodeToFree);
+                nodeToFree = *head;
+        }
+}
+
+void free_stack(stack_t **head)
+{
+	stack_t *node_d;
+	while(node_d)
+	{
+		node_d = (*head)->next;
+		free(*head);
+		*head = node_d;
+	}
+}
+
 
 /**
  * nope - .
@@ -65,9 +88,9 @@ int main(int argc, char *argv[])
 		f_close.line = line;
 		_instruction(line, line_num, fd);
 	}
-
 	free(line);
 	fclose(fd);
+	free_st(f_close.stack);
 	}
 	return (0);
 }

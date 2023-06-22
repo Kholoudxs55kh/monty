@@ -46,6 +46,7 @@ typedef struct instruction_s
  * struct fileclose - .
  * @file: .
  * @line: .
+ * @stack: .
  *
  * Description: to help close the file
  */
@@ -53,6 +54,7 @@ typedef struct fileclose
 {
 	FILE *file;
 	char *line;
+	stack_t **stack;
 } file_close;
 extern file_close f_close;
 
@@ -72,6 +74,8 @@ void free_dlistint(stack_t *head);
 void func_2(instruction_t *instrct, char *arg, FILE *fd, char *token, char *line, unsigned int line_number);
 void free_ex(char *arg, char *token,instruction_t *instrct, char *line, FILE *fd);
 void func_(instruction_t *instrct, char *arg, FILE *fd, char *token, char *line, unsigned int line_number);
+void free_stack(stack_t **head);
+void free_st(stack_t **head);
 
 
 #endif

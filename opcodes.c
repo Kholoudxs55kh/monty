@@ -10,11 +10,13 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 
+	f_close.stack = &new_node;
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free_dlistint(*stack);
 		free_dlistint(new_node);
+		free(f_close.line);
 		free(stack_top1);
 		fclose(f_close.file);
 		exit(EXIT_FAILURE);
@@ -60,6 +62,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 		free_dlistint(*stack);
 		free(f_close.line);
 		fclose(f_close.file);
+		free(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);

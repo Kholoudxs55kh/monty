@@ -1,3 +1,3 @@
 push 1
-swap
+push 2
 pall
