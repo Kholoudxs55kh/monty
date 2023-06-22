@@ -24,15 +24,16 @@ void free_dlistint(stack_t *head)
  */
 void free_st(stack_t **head)
 {
-	stack_t *temp;
+	stack_t *temp = NULL;
 
+	if (!head)
+		return;
 	while (*head)
 	{
 		temp = (*head)->next;
 		free(*head);
 		*head = temp;
 	}
-	*head = NULL;
 }
 
 /**

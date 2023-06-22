@@ -42,11 +42,15 @@ void _pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *current = *stack;
 
-	while (current != NULL)
+	if (!current)
+		return;
+
+	while (current)
 	{
 		printf("%d\n", current->n);
 		current = current->next;
 	}
+	free_st(stack);
 }
 /**
  * _pint - .
