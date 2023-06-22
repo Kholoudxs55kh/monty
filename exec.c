@@ -78,8 +78,6 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 		{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line_num, instrct.opcode);
 		free(instrct.opcode);
-		free(line);
-		free(f_close.line);
 		fclose(fd);
 		exit(EXIT_FAILURE);
 		}
@@ -91,10 +89,9 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 	if (arg == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_num);
-		free(instrct.opcode);
 		free(f_close.line);
-		free(line);
 		fclose(fd);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	/**
@@ -148,8 +145,6 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 	if (!valid_arg)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_num);
-		free(f_close.line);
-		free(line);
 		return (instrct);
 	}
 

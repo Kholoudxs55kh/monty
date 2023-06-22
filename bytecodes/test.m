@@ -1,5 +1,5 @@
 push 0
-push 3
+						push        3
 push 2
 push 1
 push -1
@@ -19,7 +19,7 @@ pop
 pall
 pop
 pall
-push 100
+push 700
 push 200
 push 300
 pall

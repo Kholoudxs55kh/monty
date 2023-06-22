@@ -17,29 +17,23 @@ void free_dlistint(stack_t *head)
 		nodeToFree = head;
 	}
 }
+/**
+ * free_st - .
+ * @head: .
+ * Return: .
+ */
 void free_st(stack_t **head)
 {
-        stack_t *nodeToFree = *head;
+	stack_t *temp;
 
-        while (nodeToFree)
-        {
-                *head = nodeToFree->next;
-                free(nodeToFree);
-                nodeToFree = *head;
-        }
-}
-
-void free_stack(stack_t **head)
-{
-	stack_t *node_d;
-	while(node_d)
+	while (*head)
 	{
-		node_d = (*head)->next;
+		temp = (*head)->next;
 		free(*head);
-		*head = node_d;
+		*head = temp;
 	}
+	*head = NULL;
 }
-
 
 /**
  * nope - .
@@ -77,21 +71,20 @@ int main(int argc, char *argv[])
 	if (fd == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
 	if (fd)
 	{
-	while (getline(&line, &len, fd) != -1)
-	{
-		line_num++;
-		f_close.line = line;
-		_instruction(line, line_num, fd);
+		while (getline(&line, &len, fd) != -1)
+		{
+			line_num++;
+			f_close.line = line;
+			_instruction(line, line_num, fd);
+		}
+		free(f_close.line);
+		fclose(fd);
 	}
-	free(line);
-	fclose(fd);
 	free_st(f_close.stack);
-	}
 	return (0);
 }
 
