@@ -3,6 +3,23 @@
 stack_t *stack_top1 = NULL;
 
 /**
+ * free_dlistint - .
+ * @head: .
+ * Return: .
+ */
+void free_dlistint(stack_t *head)
+{
+	stack_t *nodeToFree = head;
+
+	while (nodeToFree)
+	{
+		head = nodeToFree->next;
+		free(nodeToFree);
+		nodeToFree = head;
+	}
+}
+
+/**
  * nope - .
  * @stack: .
  * @line_number: .
@@ -43,7 +60,7 @@ int main(int argc, char *argv[])
 	while (getline(&line, &len, fd) != -1)
 	{
 		line_num++;
-		_instruction(line, line_num);
+		_instruction(line, line_num, fd);
 	}
 
 	free(line);

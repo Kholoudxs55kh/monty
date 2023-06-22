@@ -7,7 +7,7 @@
  * @line_number: .
  * Return: .
  */
-instruction_t _instruction(char *line, unsigned int line_number)
+instruction_t _instruction(char *line, unsigned int line_number, FILE *fd)
 {
 	char *token;
 	char *arg;
@@ -27,6 +27,8 @@ instruction_t _instruction(char *line, unsigned int line_number)
 		if (arg == NULL)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			free_dlistint(stack_top1);
+			fclose(fd);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -47,6 +49,8 @@ instruction_t _instruction(char *line, unsigned int line_number)
 		if (!valid_arg)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			fclose(fd);
+			free_dlistint(stack_top1);
 			exit(EXIT_FAILURE);
 		}
 		_push(&stack_top1, n);
