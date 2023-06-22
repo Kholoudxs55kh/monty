@@ -1,5 +1,5 @@
 #include "monty.h"
-file_close f_close = {NULL};
+file_close f_close;
 
 /**
  * free_dlistint - .
@@ -19,27 +19,26 @@ void free_dlistint(stack_t *head)
 }
 void free_st(stack_t **head)
 {
-        stack_t *nodeToFree = *head;
+	stack_t *temp;
 
-        while (nodeToFree)
-        {
-                *head = nodeToFree->next;
-                free(nodeToFree);
-                nodeToFree = *head;
-        }
+	while (*head)
+	{
+		temp = (*head)->next;
+		free(*head);
+		*head = temp;
+	}
+	*head = NULL;
 }
-
 void free_stack(stack_t **head)
 {
 	stack_t *node_d;
-	while(node_d)
+	while (node_d)
 	{
 		node_d = (*head)->next;
 		free(*head);
 		*head = node_d;
 	}
 }
-
 
 /**
  * nope - .
@@ -61,10 +60,12 @@ void nope(stack_t **stack, unsigned int line_number)
  */
 int main(int argc, char *argv[])
 {
+	stack_t *stack;
 	FILE *fd;
 	char *line = NULL;
 	size_t len = 0;
 	unsigned int line_num = 0;
+	f_close.stack = &stack;
 
 	if (argc != 2)
 	{
@@ -82,16 +83,17 @@ int main(int argc, char *argv[])
 	}
 	if (fd)
 	{
-	while (getline(&line, &len, fd) != -1)
-	{
-		line_num++;
-		f_close.line = line;
-		_instruction(line, line_num, fd);
+		while (getline(&line, &len, fd) != -1)
+		{
+			line_num++;
+			f_close.line = line;
+			_instruction(line, line_num, fd);
+		}
+		free(line);
+		fclose(fd);
 	}
-	free(line);
-	fclose(fd);
-	free_st(f_close.stack);
-	}
+	free_st(&stack);
+
 	return (0);
 }
 

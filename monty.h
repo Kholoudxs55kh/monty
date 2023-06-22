@@ -1,7 +1,7 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#define  _GNU_SOURCE
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <limits.h>
 #include <stdbool.h>
@@ -9,7 +9,6 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <stdlib.h>
-
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -52,9 +51,9 @@ typedef struct instruction_s
  */
 typedef struct fileclose
 {
-	FILE *file;
-	char *line;
-	stack_t **stack;
+        FILE *file;
+        char *line;
+        stack_t **stack;
 } file_close;
 extern file_close f_close;
 
@@ -72,10 +71,10 @@ void _mod(stack_t **stack, unsigned int line_number);
 instruction_t _instruction(char *line, unsigned int line_num, FILE *fd);
 void free_dlistint(stack_t *head);
 void func_2(instruction_t *instrct, char *arg, FILE *fd, char *token, char *line, unsigned int line_number);
-void free_ex(char *arg, char *token,instruction_t *instrct, char *line, FILE *fd);
+void free_ex(char *arg, char *token, instruction_t *instrct, char *line, FILE *fd);
 void func_(instruction_t *instrct, char *arg, FILE *fd, char *token, char *line, unsigned int line_number);
 void free_stack(stack_t **head);
 void free_st(stack_t **head);
 
-
 #endif
+

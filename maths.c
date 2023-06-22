@@ -12,8 +12,9 @@ void _add(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		free_dlistint(*stack);
+		free(f_close.line);
 		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	sum = (*stack)->n + (*stack)->next->n;
@@ -34,8 +35,9 @@ void _sub(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
-		free_dlistint(*stack);
+		free(f_close.line);
 		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	sum = -((*stack)->n) + (*stack)->next->n;
@@ -56,15 +58,17 @@ void _div(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
-		free_dlistint(*stack);
+		free(f_close.line);
 		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);
-		free_dlistint(*stack);
+		free(f_close.line);
 		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	sum = (*stack)->next->n / (*stack)->n;
@@ -85,8 +89,9 @@ void _mul(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
-		free_dlistint(*stack);
+		free(f_close.line);
 		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	sum = (*stack)->n * (*stack)->next->n;
@@ -107,15 +112,17 @@ void _mod(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
-		free_dlistint(*stack);
+		free(f_close.line);
 		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);
-		free_dlistint(*stack);
+		free(f_close.line);
 		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	sum = (*stack)->next->n % (*stack)->n;

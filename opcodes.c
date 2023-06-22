@@ -9,8 +9,8 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
-
-	f_close.stack = &new_node;
+	stack_t **head;
+	head = f_close.stack;
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -23,13 +23,12 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 
 	new_node->n = line_number;
-	new_node->next = *stack;
+	new_node->next = *head;
 	new_node->prev = NULL;
 
-	if (*stack != NULL)
-		(*stack)->prev = new_node;
-	*stack = new_node;
-	stack_top1 = *stack;
+	if (*head != NULL)
+		new_node->next->prev = new_node;
+	*head = new_node;
 }
 
 /**
@@ -59,10 +58,10 @@ void _pint(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
-		free_dlistint(*stack);
+
 		free(f_close.line);
 		fclose(f_close.file);
-		free(f_close.stack);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
@@ -80,8 +79,9 @@ void _pop(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		free_dlistint(temp);
+		free(f_close.line);
 		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	*stack = (*stack)->next;
@@ -104,9 +104,9 @@ void _swap(stack_t **stack, unsigned int line_number)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
-		free_dlistint(*stack);
-		free_dlistint(sec);
+		free(f_close.line);
 		fclose(f_close.file);
+		free_st(f_close.stack);
 		exit(EXIT_FAILURE);
 	}
 	first->next = sec->next;
@@ -115,3 +115,4 @@ void _swap(stack_t **stack, unsigned int line_number)
 	sec->prev = NULL;
 	*stack = sec;
 }
+

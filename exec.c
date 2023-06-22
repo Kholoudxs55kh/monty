@@ -26,62 +26,62 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 		if (strcmp(instrct.opcode, "pall") == 0)
 		{
 			instrct.f = _pall;
-			_pall(&stack_top1, line_num);
+			_pall(f_close.stack, line_num);
 		}
 		else if (strcmp(instrct.opcode, "pint") == 0)
 		{
 			instrct.f = _pint;
-			_pint(&stack_top1, line_num);
+			_pint(f_close.stack, line_num);
 		}
 		else if (strcmp(instrct.opcode, "pop") == 0)
 		{
 			instrct.f = _pop;
-			_pop(&stack_top1, line_num);
+			_pop(f_close.stack, line_num);
 		}
 		else if (strcmp(instrct.opcode, "swap") == 0)
 		{
 			instrct.f = _swap;
-			_swap(&stack_top1, line_num);
+			_swap(f_close.stack, line_num);
 		}
 		else if (strcmp(instrct.opcode, "add") == 0)
 		{
 			instrct.f = _add;
-			_add(&stack_top1, line_num);
+			_add(f_close.stack, line_num);
 		}
 		else if (strcmp(instrct.opcode, "sub") == 0)
 		{
 			instrct.f = _sub;
-			_sub(&stack_top1, line_num);
+			_sub(f_close.stack, line_num);
 		}
 		else if (strcmp(instrct.opcode, "div") == 0)
 		{
 			instrct.f = _div;
-			_div(&stack_top1, line_num);
+			_div(f_close.stack, line_num);
 		}
 		else if (strcmp(instrct.opcode, "mul") == 0)
 		{
 			instrct.f = _mul;
-			_mul(&stack_top1, line_num);
+			_mul(f_close.stack, line_num);
 		}
 		else if (strcmp(instrct.opcode, "mod") == 0)
 		{
 			instrct.f = _mod;
-			_mod(&stack_top1, line_num);
+			_mod(f_close.stack, line_num);
 		}
 		else if (strcmp(instrct.opcode, "nop") == 0)
 		{
 			instrct.f = nope;
-			nope(&stack_top1, line_num);
+			nope(f_close.stack, line_num);
 		}
 
 		else
 		{
-		fprintf(stderr, "L%u: unknown instruction %s\n", line_num, instrct.opcode);
-		free(instrct.opcode);
-		free(line);
-		free(f_close.line);
-		fclose(fd);
-		exit(EXIT_FAILURE);
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_num, instrct.opcode);
+			free(instrct.opcode);
+			free(line);
+			free(f_close.line);
+			fclose(fd);
+			exit(EXIT_FAILURE);
 		}
 
 		return (instrct);
@@ -154,7 +154,7 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 	}
 
 	instrct.f = _push;
-	_push(&stack_top1, n);
+	_push(f_close.stack, n);
 	return (instrct);
 }
 
