@@ -50,7 +50,6 @@ void _pall(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 		printf("%d\n", current->n);
 		current = current->next;
 	}
-	free_st(stack);
 }
 /**
  * _pint - .
