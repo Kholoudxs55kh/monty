@@ -15,13 +15,13 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 	bool valid_arg;
 	int n = 0, i;
 	instruction_t instrct;
+	char *line_c = line;
 
 	instrct.opcode = NULL;
 	instrct.f = NULL;
-	token = strtok(line, " \t\n");
+	token = strtok(line_c, " \t\n");
 	if (token == NULL)
 		return (instrct);
-
 	instrct.opcode = strdup(token);
 	if (strcmp(instrct.opcode, "push") != 0)
 	{
@@ -94,7 +94,6 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_num);
 		free(instrct.opcode);
-		free(token);
 		free(line);
 		fclose(fd);
 		exit(EXIT_FAILURE);
@@ -150,6 +149,8 @@ instruction_t _instruction(char *line, unsigned int line_num, FILE *fd)
 	if (!valid_arg)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_num);
+		free(instrct.opcode);
+		free(line);
 		return (instrct);
 	}
 

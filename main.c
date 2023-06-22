@@ -57,6 +57,8 @@ int main(int argc, char *argv[])
 		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
+	if (fd)
+	{
 	while (getline(&line, &len, fd) != -1)
 	{
 		line_num++;
@@ -65,6 +67,7 @@ int main(int argc, char *argv[])
 
 	free(line);
 	fclose(fd);
+	}
 	return (0);
 }
 

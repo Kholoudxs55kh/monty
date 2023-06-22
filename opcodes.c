@@ -104,7 +104,6 @@ void _swap(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		free_dlistint(*stack);
-		free_dlistint(first);
 		free_dlistint(sec);
 		fclose(f_close.file);
 		exit(EXIT_FAILURE);
